@@ -3,10 +3,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      network: host
     volumes:
       - "$PWD:$PWD"
     working_dir: "$PWD"
-    network_mode: "host"
     env_file:
       - .env
     command: python3 main.py
