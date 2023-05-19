@@ -10,3 +10,20 @@ services:
     env_file:
       - .env
     command: python3 main.py
+
+  postgres:
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGDATA: ${PGDATA}
+    volumes:
+      - ${PGDATA_VOLUME}
+    ports:
+      - ${POSTGRES_PORT}:5432
+    deploy:
+      resources:
+        limits:
+          cpus: ${POSTGRES_CPU}
+          memory: ${POSTGRES_MEMORY}
